@@ -1,4 +1,4 @@
-package kopring.mvc.transaction
+package kopring.mvc.transaction.first
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
