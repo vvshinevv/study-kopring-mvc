@@ -24,8 +24,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
-	implementation group: 'io.github.microutils', name: 'kotlin-logging-jvm', version: '3.0.5'
+	implementation 'io.github.microutils:kotlin-logging-jvm:3.0.5'
 	implementation 'io.arrow-kt:arrow-core:1.2.0-RC'
+	implementation 'io.github.microutils:kotlin-logging:3.0.4'
+
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.ninja-squad:springmockk:3.1.2'

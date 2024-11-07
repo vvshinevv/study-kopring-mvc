@@ -9,11 +9,11 @@ fun main() {
     val intContainer = Container(1)
     val doubleContainer = Container(1.1)
 
-    func(intContainer)
+//    func(intContainer)
 }
 
 fun wildCardFun(arrayList: ArrayList<*>) {
-    arrayList.add(arrayList[0]) // compile error
+//    arrayList.add(arrayList[0]) // compile error
 }
 
 fun <T> genericFun(arrayList: ArrayList<T>) {
