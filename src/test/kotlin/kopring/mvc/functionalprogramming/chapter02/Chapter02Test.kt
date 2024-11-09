@@ -36,6 +36,36 @@ class Chapter02Test {
         log.info { sample.component1() }
     }
 
+    @Test
+    fun exercise02_5() {
+        val person = Person("FP", 3)
+        val result = with(person) {
+            println(name)
+        }
+
+        log.info { result }
+    }
+
+    @Test
+    fun exercise02_6() {
+        val person = Person("FP", 3)
+        val result = person.let { p ->
+            p.age = 10
+            p.name = "kotlin"
+        }
+
+        log.info { result }
+    }
+
+    fun Person.name() = run { println("name: ${this.name}") }
+
+    val person = run { Person("a", 2) }
+
+    @Test
+    fun exercise02_7() {
+        val person = Person("FP", 3)
+
+    }
 
     companion object {
         private val log = KotlinLogging.logger { }
@@ -58,6 +88,8 @@ class Chapter02Test {
                 super<Bar>.printKotlin()
             }
         }
+
+        data class Person(var name: String, var age: Int)
 
         data class Sample(val key: String, val value: String)
     }
