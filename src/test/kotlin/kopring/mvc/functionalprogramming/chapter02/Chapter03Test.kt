@@ -1,5 +1,6 @@
 package kopring.mvc.functionalprogramming.chapter02
 
+import arrow.core.tail
 import mu.KotlinLogging
 import org.junit.jupiter.api.Test
 
@@ -21,7 +22,6 @@ class Chapter03Test {
         log.info { trampoline(even(2)) }
     }
 
-
     private fun even(n: Int): Bounce<Boolean> = when (n) {
         0 -> Done(true)
         else -> More { odd(n - 1) }
@@ -30,6 +30,16 @@ class Chapter03Test {
     private fun odd(n: Int): Bounce<Boolean> = when (n) {
         0 -> Done(false)
         else -> More { even(n - 1) }
+    }
+
+    @Test
+    fun exercise03_3() {
+        log.info { powerset(setOf(1, 2, 3), setOf(setOf())) }
+    }
+
+    tailrec fun <T> powerset(s: Set<T>, acc: Set<Set<T>>): Set<Set<T>> = when {
+        s.isEmpty() -> acc
+        else -> powerset(s.tail().toSet(), acc + acc.map { it + s.last() })
     }
 
 
