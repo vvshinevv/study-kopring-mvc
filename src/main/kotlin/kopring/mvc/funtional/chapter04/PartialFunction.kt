@@ -26,3 +26,9 @@ fun <P1, P2, P3, R> ((P1, P2, P3) -> R).curried(): (P1) -> (P2) -> (P3) -> R = {
     { p2: P2 -> { p3: P3 -> this(p1, p2, p3) } }
 }
 
+// 합성 함수
+infix fun <F, G, R> ((F) -> R).compose(g: (G) -> F): (G) -> R {
+    return { gInput: G -> this(g(gInput)) }
+}
+
+val s: (Int) -> Int = { i: Int -> i * i }

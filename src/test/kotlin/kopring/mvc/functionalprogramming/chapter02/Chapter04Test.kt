@@ -1,5 +1,7 @@
 package kopring.mvc.functionalprogramming.chapter02
 
+import arrow.core.compose
+import arrow.core.curried
 import kopring.mvc.funtional.chapter04.PartialFunction
 import kopring.mvc.funtional.chapter04.toPartialFunction
 import mu.KotlinLogging
@@ -51,7 +53,6 @@ class Chapter04Test {
 
     @Test
     fun exercise04_4() {
-
         // 커링
         fun multiThree(a: Int) = { b: Int -> { c: Int -> a * b * c } }
 
@@ -61,6 +62,26 @@ class Chapter04Test {
 
         log.info { partial3 }
         log.info { multiThree(1)(2)(3) }
+    }
+
+    @Test
+    fun exercise04_5() {
+        tailrec fun gcd(m: Int, n: Int): Int = when (n) {
+            0 -> m
+            else -> gcd(n, m % n)
+        }
+
+        tailrec fun power(x: Double, n: Int, acc: Double = 1.0): Double = when (n) {
+            0 -> acc
+            else -> power(x, n - 1, x * acc)
+        }
+
+        val powerOfTwo = { x: Int -> power(x.toDouble(), 2).toInt() }
+        val curriedGcd1 = ::gcd.curried()
+        val curriedGcd2 = { m: Int, n: Int -> gcd(m, powerOfTwo(n))}.curried()
+
+        val composedGcdPower1 = curriedGcd2 compose powerOfTwo
+//        log.info { composedGcdPower(25)(5) }
     }
 
     companion object {
